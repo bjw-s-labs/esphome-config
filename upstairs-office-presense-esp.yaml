@@ -1,9 +1,0 @@
----
-substitutions:
-  system_name: upstairs-office-presence-esp
-  host_name: upstairs-office-presence-esp.bjw-s.internal
-  friendly_name: Upstairs Office - Presence ESP
-  device_description: M5Stack Atom Presence Detector
-
-packages:
-  device: !include devices/m5stack-atom-presence-detector.yaml

@@ -20,10 +20,39 @@ wifi:
     password: "${wifi_ap_password}"
 
 sensor:
-  - <<: !include ../sensors/wifi_signal_percentage.yaml
-  - <<: !include ../sensors/wifi_signal.yaml
+  - platform: template
+    id: sensor_wifi_signal_percentage
+    name: "WiFi Signal Percentage"
+    icon: "mdi:wifi"
+    unit_of_measurement: "%"
+    update_interval: never
+    entity_category: "diagnostic"
+    lambda: |-
+      if (id(sensor_wifi_signal).state) {
+        if (id(sensor_wifi_signal).state <= -100 ) {
+          return 0;
+        } else if (id(sensor_wifi_signal).state >= -50) {
+          return 100;
+        } else {
+          return 2 * (id(sensor_wifi_signal).state + 100);
+        }
+      } else {
+        return NAN;
+      }
+
+  - platform: wifi_signal
+    id: sensor_wifi_signal
+    name: "WiFi Signal"
+    update_interval: 300s
+    entity_category: "diagnostic"
     on_value:
       - component.update: sensor_wifi_signal_percentage
 
 text_sensor:
-  - <<: !include ../text_sensors/wifi_info.yaml
+  - platform: wifi_info
+    ip_address:
+      name: "IP Address"
+    ssid:
+      name: "Connected SSID"
+    mac_address:
+      name: "Connected MAC"

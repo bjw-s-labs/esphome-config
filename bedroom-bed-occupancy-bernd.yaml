@@ -1,0 +1,9 @@
+---
+substitutions:
+  system_name: bedroom-bed-occupancy-right
+  host_name: bedroom-bed-occupancy-right.bjw-s.internal
+  friendly_name: Bedroom - Bed Occupancy Right
+  device_description: Apollo MSR-2 Presence detector
+
+packages:
+  device: !include devices/apollo_msr2_base.yaml

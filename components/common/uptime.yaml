@@ -1,4 +1,8 @@
 ---
 # https://esphome.io/components/sensor/uptime.html
 sensor:
-  - <<: !include ../sensors/uptime.yaml
+  - platform: uptime
+    name: Uptime
+    id: uptime_seconds
+    entity_category: diagnostic
+    update_interval: 60s

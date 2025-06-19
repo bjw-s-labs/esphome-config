@@ -4,42 +4,7 @@ substitutions:
   host_name: downstairs-hallway-waterp1meter.bjw-s.internal
   friendly_name: Downstairs Hallway - WaterP1Meter
   device_description: Custom ESP that sends water meter and smart meter data
+  gas_mbus_id: "2"
 
 packages:
   device: !include devices/waterp1meterkit-v2.yaml
-
-#DSMR DOCKER STUFF
-http_request:
-  timeout: 2s
-  verify_ssl: false
-
-interval:
-  - interval: 15s
-    then:
-      - http_request.post:
-          url: http://10.1.1.137/api/v2/datalogger/dsmrreading
-          headers:
-            Authorization: !secret dsmrreader_apikey
-            Content-Type: application/json
-          json: |-
-            root["electricity_currently_delivered"] = id(dsmr_electricity_currently_delivered).state;
-            root["electricity_currently_returned"] = id(dsmr_electricity_currently_returned).state;
-            root["electricity_delivered_1"] = id(dsmr_electricity_delivered_1).state;
-            root["electricity_delivered_2"] = id(dsmr_electricity_delivered_2).state;
-            root["electricity_returned_1"] = id(dsmr_electricity_returned_1).state;
-            root["electricity_returned_2"] = id(dsmr_electricity_returned_2).state;
-            root["extra_device_delivered"] = id(dsmr_extra_device_delivered).state;
-            root["extra_device_timestamp"] = id(dsmr_timestamp_formatted).state;
-            root["phase_currently_delivered_l1"] = id(dsmr_phase_currently_delivered_l1).state;
-            root["phase_currently_delivered_l2"] = id(dsmr_phase_currently_delivered_l2).state;
-            root["phase_currently_delivered_l3"] = id(dsmr_phase_currently_delivered_l3).state;
-            root["phase_currently_returned_l1"] = id(dsmr_phase_currently_returned_l1).state;
-            root["phase_currently_returned_l2"] = id(dsmr_phase_currently_returned_l2).state;
-            root["phase_currently_returned_l3"] = id(dsmr_phase_currently_returned_l3).state;
-            root["phase_power_current_l1"] = id(dsmr_phase_power_current_l1).state;
-            root["phase_power_current_l2"] = id(dsmr_phase_power_current_l2).state;
-            root["phase_power_current_l3"] = id(dsmr_phase_power_current_l3).state;
-            root["phase_voltage_l1"] = id(dsmr_phase_voltage_l1).state;
-            root["phase_voltage_l2"] = id(dsmr_phase_voltage_l2).state;
-            root["phase_voltage_l3"] = id(dsmr_phase_voltage_l3).state;
-            root["timestamp"] = id(dsmr_timestamp_formatted).state;

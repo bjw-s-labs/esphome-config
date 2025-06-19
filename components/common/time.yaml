@@ -11,6 +11,7 @@ substitutions:
   time_update_interval: 6h
 
 time:
-  - <<: !include ../time/sntp.yaml
+  - platform: sntp
+    id: time_sntp
     timezone: "${time_timezone}"
     update_interval: ${time_update_interval}

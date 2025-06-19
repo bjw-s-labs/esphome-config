@@ -1,11 +1,6 @@
 lost+found
+.code-server/
+.ash_history
 
 #ESPHome ignores
-.esphome/
-/.build/
-**/.pioenvs/
-**/.piolibdeps/
-**/lib/
-**/src/
-**/platformio.ini
 /secrets.yaml

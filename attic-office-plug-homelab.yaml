@@ -3,9 +3,14 @@ substitutions:
   system_name: attic-office-plug-homelab
   host_name: attic-office-plug-homelab.bjw-s.internal
   friendly_name: Attic Office - Homelab Plug
-  device_description: CloudFree P1EU plug
-  current_res: "0.00245"
-  voltage_div: "963"
+  device_description: Athom PG01
 
 packages:
-  device: !include devices/cloudfree_p1eu.yaml
+  device: !include devices/athom_esp32_c3_eu_plug.yaml
+
+# Disable BLE proxy on this plug
+bluetooth_proxy: !remove
+esp32_ble_tracker: !remove
+api:
+  on_client_connected: !remove
+  on_client_disconnected: !remove

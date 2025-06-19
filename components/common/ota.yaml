@@ -3,10 +3,5 @@
 # https://esphome.io/components/ota.html
 #
 
-# substitutions:
-#   ota_password: !secret ota_password
-
 ota:
-  - platform: esphome
-    id: component_ota
-    # password: "${ota_password}"
+  platform: esphome

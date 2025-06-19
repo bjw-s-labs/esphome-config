@@ -1,8 +1,8 @@
 ---
 substitutions:
-  system_name: bedroom-presence-esp
-  host_name: bedroom-presence-esp.bjw-s.internal
-  friendly_name: Bedroom - Presence ESP
+  system_name: bedroom-eva-presence-esp
+  host_name: bedroom-eva-presence-esp.bjw-s.internal
+  friendly_name: Bedroom Eva - Presence ESP
   device_description: M5Stack Atom Presence Detector
 
 packages:

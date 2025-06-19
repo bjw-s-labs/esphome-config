@@ -1,4 +1,6 @@
 ---
 # https://esphome.io/components/text_sensor/version.html
 text_sensor:
-  - <<: !include ../text_sensors/version.yaml
+  - platform: version
+    id: text_sensor_version
+    name: "ESPHome Version"

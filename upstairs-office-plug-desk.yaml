@@ -1,0 +1,9 @@
+# ---
+substitutions:
+  system_name: upstairs-office-plug-desk
+  host_name: upstairs-office-plug-desk.bjw-s.internal
+  friendly_name: Upstairs Office - Desk Plug
+  device_description: Athom PG01 with BLE scanner
+
+packages:
+  device: !include devices/athom_esp32_c3_eu_plug.yaml

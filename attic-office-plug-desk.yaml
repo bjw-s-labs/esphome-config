@@ -3,9 +3,7 @@ substitutions:
   system_name: attic-office-plug-desk
   host_name: attic-office-plug-desk.bjw-s.internal
   friendly_name: Attic Office - Desk Plug
-  device_description: CloudFree P1EU plug
-  current_res: "0.00243"
-  voltage_div: "963"
+  device_description: Athom PG01 with BLE scanner
 
 packages:
-  device: !include devices/cloudfree_p1eu.yaml
+  device: !include devices/athom_esp32_c3_eu_plug.yaml

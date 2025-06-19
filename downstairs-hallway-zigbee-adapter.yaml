@@ -1,0 +1,19 @@
+---
+substitutions:
+  system_name: downstairs-hallway-zigbee
+  host_name: downstairs-hallway-zigbee-adapter.bjw-s.internal
+  friendly_name: Downstairs Hallway - Zigbee Adapter
+  device_description: SMLight SLZB06M
+  zigbee_chipset: EFR32MG21
+  zigbee_firmware_url: https://github.com/darkxst/silabs-firmware-builder/releases/20241106/
+  zigbee_firmware_version: "ncp-8.0.2.0-sw_flow"
+
+packages:
+  device: !include devices/smlight_slzb06.yaml
+
+time:
+  - platform: sntp
+    on_time:
+      - cron: "0 0 10 * * 1" # Sunday at 10:00:00
+        then:
+          - button.press: restart_esp

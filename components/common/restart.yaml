@@ -5,5 +5,5 @@
 #
 button:
   - platform: restart
-    id: button_restart
-    name: "Restart"
+    id: restart_esp
+    name: "Restart ESP"
