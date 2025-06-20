@@ -1,0 +1,10 @@
+---
+packages:
+  api: !include
+    file: api.yaml
+  diagnostics: !include
+    file: diagnostics.yaml
+  esphome: !include
+    file: esphome.yaml
+  time: !include
+    file: time.yaml

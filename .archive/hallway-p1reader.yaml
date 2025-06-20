@@ -1,9 +1,0 @@
----
-  substitutions:
-    system_name: hallway_p1reader
-    host_name: hallway-p1reader-esp.bjw-s.internal
-    friendly_name: Hallway - P1 Reader
-    device_description: Custom ESP8266 that sends smart meter data over WiFi
-
-  packages:
-    device: !include devices/enri-p1-shield-v2.yaml

@@ -1,0 +1,15 @@
+---
+esp32:
+  board: m5stack-core-esp32
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y
+      CONFIG_BT_BLE_50_FEATURES_SUPPORTED: n
+      CONFIG_ESP_TASK_WDT_TIMEOUT_S: "10"
+
+packages:
+  esphome-base: !include
+    file: ../esphome-common/base.yaml
+  wifi: !include
+    file: ../esphome-common/wifi.yaml

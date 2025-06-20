@@ -1,10 +1,11 @@
 ---
 substitutions:
   system_name: downstairs-hallway-waterp1meter
-  host_name: downstairs-hallway-waterp1meter.bjw-s.internal
   friendly_name: Downstairs Hallway - WaterP1Meter
   device_description: Custom ESP that sends water meter and smart meter data
-  gas_mbus_id: "2"
 
 packages:
-  device: !include devices/waterp1meterkit-v2.yaml
+  device: !include
+    file: waterp1meterkit-v2/base.yaml
+    vars:
+      gas_mbus_id: "2"

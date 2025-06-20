@@ -1,0 +1,96 @@
+---
+substitutions:
+  uart_id: ac_serial
+  uart_tx_pin: GPIO17
+  uart_rx_pin: GPIO5
+  stream_server_id: my_stream_server
+  stream_server_port: "6638"
+  restart_zigbee_chip_button_id: restart_zigbee_chip_button
+  restart_zigbee_chip_script_id: restart_zigbee_chip_script
+  restart_zigbee_chip_switch_id: restart_zigbee_chip_switch
+  restart_zigbee_chip_switch_pin: "33"
+  update_zigbee_firmware_button_id: update_zigbee_firmware_button
+  update_zigbee_firmware_script_id: update_zigbee_firmware_script
+  update_zigbee_firmware_switch_id: update_zigbee_firmware_switch
+  update_zigbee_firmware_internal_switch_id: update_zigbee_firmware_internal_switch
+  update_zigbee_firmware_internal_switch_pin: "32"
+
+esphome:
+  on_boot:
+    priority: 600
+    then:
+      - script.execute: ${restart_zigbee_chip_script_id}
+
+external_components:
+  - source:
+      type: git
+      url: https://github.com/tube0013/esphome-stream-server-v2
+      ref: 3df5f479994269028fd36f23a16cab528b832230
+    components:
+      - stream_server
+
+script:
+  - id: ${restart_zigbee_chip_script_id}
+    then:
+      - switch.turn_on: ${restart_zigbee_chip_switch_id}
+      - delay: 15ms
+      - switch.turn_off: ${restart_zigbee_chip_switch_id}
+  - id: ${update_zigbee_firmware_script_id}
+    then:
+      - switch.turn_on: ${update_zigbee_firmware_internal_switch_id}
+      - delay: 1s
+      - switch.turn_on: ${restart_zigbee_chip_switch_id}
+      - delay: 1s
+      - switch.turn_off: ${restart_zigbee_chip_switch_id}
+      - logger.log: "Wait 1 seconds for Zigbee chip to be ready"
+      - delay: 1s
+      - switch.turn_off: ${update_zigbee_firmware_internal_switch_id}
+      - logger.log: "Update Zigbee with your firmware now!"
+
+uart:
+  - id: ${uart_id}
+    tx_pin: ${uart_tx_pin}
+    rx_pin: ${uart_rx_pin}
+    baud_rate: 115200
+
+stream_server:
+  id: ${stream_server_id}
+  uart_id: ${uart_id}
+  port: ${stream_server_port}
+
+binary_sensor:
+  - platform: stream_server
+    stream_server: ${stream_server_id}
+    name: "Serial Connected"
+    entity_category: diagnostic
+
+button:
+  - platform: template
+    name: "Restart Zigbee"
+    icon: mdi:restart
+    id: ${restart_zigbee_chip_button_id}
+    on_press:
+      - script.execute: ${restart_zigbee_chip_script_id}
+
+switch:
+  - platform: gpio
+    pin: ${restart_zigbee_chip_switch_pin}
+    id: ${restart_zigbee_chip_switch_id}
+    inverted: yes
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    pin: ${update_zigbee_firmware_internal_switch_pin}
+    name: "Zigbee flash Mode internal"
+    icon: mdi:toggle-switch
+    id: ${update_zigbee_firmware_internal_switch_id}
+    inverted: yes
+    restore_mode: ALWAYS_OFF
+    internal: true
+  - platform: template
+    name: "Zigbee flash Mode"
+    icon: mdi:cellphone-arrow-down
+    id: ${update_zigbee_firmware_switch_id}
+    turn_on_action:
+      - script.execute: ${update_zigbee_firmware_script_id}
+    turn_off_action:
+      - button.press: ${restart_zigbee_chip_button_id}

@@ -1,0 +1,10 @@
+---
+# Enable Home Assistant API
+api:
+
+# Enable esphome OTA updates
+ota:
+  - platform: esphome
+
+# Enable logging
+logger:

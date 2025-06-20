@@ -1,16 +1,9 @@
 ---
 substitutions:
   system_name: attic-office-plug-3dprinter
-  host_name: attic-office-plug-3dprinter.bjw-s.internal
   friendly_name: Attic Office - 3DPrinter Plug
-  device_description: Athom PG01
+  device_description: Athom ESP32-C3 EU Plug
 
 packages:
-  device: !include devices/athom_esp32_c3_eu_plug.yaml
-
-# Disable BLE proxy on this plug
-bluetooth_proxy: !remove
-esp32_ble_tracker: !remove
-api:
-  on_client_connected: !remove
-  on_client_disconnected: !remove
+  device: !include
+    file: athom-c3-eu/base.yaml

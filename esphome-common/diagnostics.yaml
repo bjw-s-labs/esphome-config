@@ -1,0 +1,25 @@
+---
+substitutions:
+  status_id: status_sensor
+  restart_id: restart_button
+  uptime_id: uptime_sensor
+
+binary_sensor:
+  - platform: status
+    id: ${status_id}
+    name: Status
+    entity_category: diagnostic
+
+button:
+  - platform: restart
+    name: Restart
+    id: ${restart_id}
+    icon: mdi:restart
+    entity_category: config
+
+sensor:
+  - platform: uptime
+    type: seconds
+    id: ${uptime_id}
+    name: Uptime
+    entity_category: diagnostic

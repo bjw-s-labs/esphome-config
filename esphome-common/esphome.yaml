@@ -1,0 +1,10 @@
+---
+substitutions:
+  system_name: "${system_name}"
+  device_description: "${device_description}"
+  friendly_name: "${friendly_name}"
+
+esphome:
+  name: "${system_name}"
+  comment: "${device_description}"
+  friendly_name: "${friendly_name}"

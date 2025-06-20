@@ -1,10 +1,13 @@
 ---
 substitutions:
   system_name: attic-office-ac-controller
-  host_name: attic-office-ac-controller.bjw-s.internal
   friendly_name: Attic Office - AC Controller
   device_description: Generic ESP32 that controls the attic office AC
-  temperature_sensor_entity_id: sensor.attic_office_multisensor_temperature
 
 packages:
-  device: !include devices/esphome_lg_controller.yaml
+  device: !include
+    file: esphome-lg-controller/base.yaml
+  device_override: !include
+    file: esphome-lg-controller/ha_temperature_override.yaml
+    vars:
+      temperature_sensor_ha_entity_id: sensor.attic_office_multisensor_temperature

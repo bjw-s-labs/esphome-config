@@ -1,6 +1,7 @@
 lost+found
 .code-server/
 .ash_history
+.esphome/
 
 #ESPHome ignores
 /secrets.yaml

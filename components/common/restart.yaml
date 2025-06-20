@@ -1,9 +1,0 @@
----
-# Restart
-#
-# https://esphome.io/components/button/restart.html
-#
-button:
-  - platform: restart
-    id: restart_esp
-    name: "Restart ESP"

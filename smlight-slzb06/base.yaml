@@ -1,0 +1,22 @@
+---
+esp32:
+  board: esp32dev
+  flash_size: 16MB
+  framework:
+    # type: arduino
+    type: esp-idf
+
+ethernet:
+  domain: !secret domain_devices
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO0_IN
+  phy_addr: 1
+  power_pin: GPIO16
+
+packages:
+  esphome-base: !include
+    file: ../esphome-common/base.yaml
+  entities: !include
+    file: entities.yaml

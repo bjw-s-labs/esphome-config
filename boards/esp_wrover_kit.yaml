@@ -1,9 +1,0 @@
----
-# Espressif ESP-WROVER-KIT
-#
-# https://docs.platformio.org/en/latest/boards/espressif8266/esp01_1m.html#board-espressif8266-esp01-1m
-#
-esphome:
-  <<: !include .esphome.yaml
-  platform: ESP32
-  board: esp-wrover-kit

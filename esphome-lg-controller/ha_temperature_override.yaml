@@ -1,0 +1,15 @@
+---
+substitutions:
+  # The input temperature sensor in HA.
+  temperature_sensor_id: temp_sensor
+  temperature_sensor_ha_entity_id: ""
+
+sensor:
+  - id: ${temperature_sensor_id}
+    platform: homeassistant
+    internal: true
+    entity_id: ${temperature_sensor_ha_entity_id}
+
+climate:
+  - id: !extend ${climate_id}
+    temperature_sensor: ${temperature_sensor_id}

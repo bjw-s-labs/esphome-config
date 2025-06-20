@@ -1,0 +1,11 @@
+---
+substitutions:
+  auto_restart_schedule: "0 0 10 * * 1" # Sunday at 10:00:00
+
+time:
+  - platform: sntp
+    on_time:
+      - cron: ${auto_restart_schedule}
+        then:
+          - logger.log: "Auto-restart triggered by schedule"
+          - button.press: ${restart_id}

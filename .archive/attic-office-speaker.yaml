@@ -1,9 +1,0 @@
----
-  substitutions:
-    system_name: attic_office_speaker
-    host_name: attic-office-speaker-esp.bjw-s.internal
-    friendly_name: Attic Office - Speaker
-    device_description: M5Stack Atom Speaker Kit that plays doorbell chime in the attic office
-
-  packages:
-    device: !include devices/m5stack-atom-doorbell-chime.yaml

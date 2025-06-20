@@ -1,55 +1,56 @@
 ---
 name: Lint
 
-on: # yamllint disable-line rule:truthy
+on:
   workflow_dispatch:
   pull_request:
     branches:
-      - main
+    - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
-  build:
-    name: Lint
+  yamllint:
+    name: yamllint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      with:
+        persist-credentials: false
 
-      - name: Generate Token
-        id: generate-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.BJWS_APP_ID }}
-          private-key: ${{ secrets.BJWS_APP_PRIVATE_KEY }}
+    - name: Get changed files
+      id: changed-files
+      uses: bjw-s-labs/action-changed-files@930cef8463348e168cab7235c47fe95a7a235f65 # v0.3.3
+      with:
+        patterns: |-
+          **/*.yaml
+          **/*.yml
 
-      - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/documentation@e08c2b05e3dbc40af4c23f41172ef1e068a7d651 # v8.8.0
-        env:
-          GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
-          PRINT_ALPACA: false
-          VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'workflow_dispatch' }}
-          ENABLE_LINTERS: |-
-            ${{
-              join(
-                fromJSON('
-                  [
-                    "ACTION_ACTIONLINT",
-                    "COPYPASTE_JSCPD",
-                    "REPOSITORY_GIT_DIFF",
-                    "REPOSITORY_SECRETLINT",
-                    "YAML_PRETTIER",
-                    "YAML_YAMLLINT"
-                  ]
-                '),
-                ','
-              )
-            }}
-          COPYPASTE_JSCPD_CONFIG_FILE: .ci/jscpd/jscpd.json
-          YAML_YAMLLINT_CONFIG_FILE: .ci/yamllint/.yamllint.yaml
-          YAML_PRETTIER_CONFIG_FILE: .ci/prettier/.prettierrc.yaml
+    - name: Install yamllint
+      if: steps.changed-files.outputs.changed_files != '[]'
+      shell: bash
+      run: |
+        pip install --user yamllint
+
+    - name: Run yamllint
+      if: steps.changed-files.outputs.changed_files != '[]'
+      shell: bash
+      run: |
+        yamllint --config-file .yamllint.yaml --format github ${{ join(fromJSON(steps.changed-files.outputs.changed_files), ' ') }}
+
+  lint_success:
+    needs:
+    - yamllint
+    if: ${{ !cancelled() }}
+    name: Lint successful
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check job status
+      if: ${{ contains(needs.*.result, 'failure') }}
+      run: exit 1

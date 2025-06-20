@@ -1,0 +1,142 @@
+---
+substitutions:
+  power_button_id: power_button
+  power_button_pin: GPIO3
+  power_sensor_id: power_sensor
+  relay_id: relay
+  relay_pin: GPIO5
+  relay_restore_mode: RESTORE_DEFAULT_OFF
+  sensor_update_interval: 10s
+  uart_id: ac_serial
+  uart_rx_pin: GPIO20
+
+uart:
+  - id: ${uart_id}
+    rx_pin: ${uart_rx_pin}
+    baud_rate: 4800
+    data_bits: 8
+    stop_bits: 1
+    parity: EVEN
+
+globals:
+  - id: total_energy
+    type: float
+    restore_value: yes
+    initial_value: "0.0"
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: ${power_button_pin}
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Power Button"
+    id: ${power_button_id}
+    disabled_by_default: true
+    on_multi_click:
+      - timing:
+          - ON for at most 1s
+          - OFF for at least 0.2s
+        then:
+          - switch.toggle: ${relay_id}
+
+sensor:
+  - platform: cse7766
+    current:
+      name: "Current"
+      icon: mdi:current-ac
+      filters:
+        - throttle_average: ${sensor_update_interval}
+        - lambda: if (x < 0.060) return 0.0; else return x; #For the chip will report less than 3w power when no load is connected
+      on_value_range:
+        - above: 16
+          then:
+            - switch.turn_off: ${relay_id}
+
+    voltage:
+      name: "Voltage"
+      icon: mdi:sine-wave
+      filters:
+        - throttle_average: ${sensor_update_interval}
+
+    power:
+      name: "Power"
+      id: ${power_sensor_id}
+      icon: mdi:power
+      filters:
+        - throttle_average: ${sensor_update_interval}
+        - lambda: if (x < 3.0) return 0.0; else return x; #For the chip will report less than 3w power when no load is connected
+
+    energy:
+      name: "Energy"
+      id: energy
+      icon: mdi:lightning-bolt
+      unit_of_measurement: kWh
+      filters:
+        - throttle: ${sensor_update_interval}
+        # Multiplication factor from W to kW is 0.001
+        - multiply: 0.001
+      on_value:
+        then:
+          - lambda: |-
+              static float previous_energy_value = 0.0;
+              float current_energy_value = id(energy).state;
+              id(total_energy) += current_energy_value - previous_energy_value;
+              previous_energy_value = current_energy_value;
+              id(total_energy_sensor).update();
+
+    apparent_power:
+      name: "Apparent Power"
+      icon: mdi:power
+      filters:
+        - throttle_average: ${sensor_update_interval}
+    reactive_power:
+      name: "Reactive Power"
+      icon: mdi:flash
+      filters:
+        - throttle_average: ${sensor_update_interval}
+    power_factor:
+      name: "Power Factor"
+      icon: mdi:percent-outline
+      filters:
+        - throttle_average: ${sensor_update_interval}
+
+  - platform: template
+    name: "Total Energy"
+    id: total_energy_sensor
+    unit_of_measurement: kWh
+    device_class: "energy"
+    state_class: "total_increasing"
+    icon: "mdi:lightning-bolt"
+    accuracy_decimals: 3
+    lambda: |-
+      return id(total_energy);
+    update_interval: ${sensor_update_interval}
+
+  - platform: total_daily_energy
+    name: "Total Daily Energy"
+    icon: mdi:hours-24
+    restore: true
+    power_id: ${power_sensor_id}
+    unit_of_measurement: kWh
+    accuracy_decimals: 3
+    filters:
+      - multiply: 0.001
+
+switch:
+  - platform: gpio
+    name: "Switch"
+    pin: ${relay_pin}
+    id: ${relay_id}
+    icon: mdi:power-socket-eu
+    restore_mode: ${relay_restore_mode}
+
+light:
+  - platform: status_led
+    name: "Status LED"
+    id: blue_led
+    icon: mdi:lightbulb-outline
+    disabled_by_default: true
+    pin:
+      inverted: true
+      number: GPIO6

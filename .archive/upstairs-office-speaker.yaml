@@ -1,9 +1,0 @@
----
-  substitutions:
-    system_name: upstairs_office_speaker
-    host_name: upstairs-office-speaker-esp.bjw-s.internal
-    friendly_name: Upstairs Office - Speaker
-    device_description: M5Stack Atom Speaker Kit that plays doorbell chime in the upstairs office
-
-  packages:
-    device: !include devices/m5stack-atom-doorbell-chime.yaml

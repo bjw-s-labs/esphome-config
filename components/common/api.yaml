@@ -1,4 +1,0 @@
----
-# https://esphome.io/components/api.html
-api:
-  reboot_timeout: 0s

@@ -1,0 +1,23 @@
+---
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+ethernet:
+  domain: !secret domain_devices
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 1
+  power_pin: GPIO33
+
+preferences:
+  flash_write_interval: 5min
+
+packages:
+  esphome-base: !include
+    file: ../esphome-common/base.yaml
+  entities: !include
+    file: entities.yaml

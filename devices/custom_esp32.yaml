@@ -1,8 +1,0 @@
----
-  # Device: Custom ESP32 board
-  #
-
-  packages:
-    <<: !include_dir_named ../components/common
-    wifi: !include ../components/hardware/wifi.yaml
-    board: !include ../boards/nodemcu-32s.yaml

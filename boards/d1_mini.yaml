@@ -1,9 +1,0 @@
----
-  # WeMos D1 mini
-  #
-  # https://docs.platformio.org/en/latest/boards/espressif8266/d1_mini.html#id1
-  #
-  esphome:
-    <<: !include .esphome.yaml
-    platform: ESP8266
-    board: d1_mini

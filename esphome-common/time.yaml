@@ -1,0 +1,10 @@
+---
+substitutions:
+  time_timezone: "Europe/Amsterdam"
+  time_update_interval: 6h
+
+time:
+  - platform: sntp
+    id: time_sntp
+    timezone: "${time_timezone}"
+    update_interval: ${time_update_interval}

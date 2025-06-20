@@ -1,7 +1,0 @@
----
-# OTA (Over The Air) component
-# https://esphome.io/components/ota.html
-#
-
-ota:
-  platform: esphome
