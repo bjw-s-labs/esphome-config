@@ -1,0 +1,11 @@
+---
+substitutions:
+  system_name: bedroom-bed-presence
+  friendly_name: Bedroom - Bed Presence
+  device_description: ElevatedSensors Bed-Presence MK1 with BLE scanner
+
+packages:
+  device: !include
+    file: elevatedsensors-bed-presence-mk1/base.yaml
+  bluetooth-proxy: !include
+    file: esphome-common/bluetooth-proxy.yaml

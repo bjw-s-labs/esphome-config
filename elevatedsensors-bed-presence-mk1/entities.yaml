@@ -1,0 +1,73 @@
+---
+substitutions:
+  sensor_gpio_left: GPIO10
+  sensor_gpio_right: GPIO20
+
+packages:
+  left_bed_sensor: !include
+    file: sensor.yaml
+    vars:
+      sensor_name: Left
+      sensor_id: left
+      sensor_gpio: ${sensor_gpio_left}
+
+  right_bed_sensor: !include
+    file: sensor.yaml
+    vars:
+      sensor_name: Right
+      sensor_id: right
+      sensor_gpio: ${sensor_gpio_right}
+
+binary_sensor:
+  - platform: template
+    name: Bed Occupied Both (Fast)
+    id: bed_occupied_both_fast
+    device_class: occupancy
+    icon: mdi:bunk-bed
+    disabled_by_default: true
+    lambda: return id(bed_occupied_left_fast).state && id(bed_occupied_right_fast).state;
+
+  - platform: template
+    name: Bed Occupied Either (Fast)
+    id: bed_occupied_either_fast
+    device_class: occupancy
+    icon: mdi:bunk-bed
+    disabled_by_default: true
+    lambda: return id(bed_occupied_left_fast).state || id(bed_occupied_right_fast).state;
+
+  - platform: template
+    name: Bed Occupied Both
+    id: bed_occupied_both
+    device_class: occupancy
+    icon: mdi:bunk-bed
+    lambda: return id(bed_occupied_left).state && id(bed_occupied_right).state;
+
+  - platform: template
+    name: Bed Occupied Either
+    id: bed_occupied_either
+    device_class: occupancy
+    icon: mdi:bunk-bed
+    lambda: return id(bed_occupied_left).state || id(bed_occupied_right).state;
+
+switch:
+  - platform: template
+    name: Full Range
+    id: full_range
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    entity_category: config
+    icon: mdi:arrow-expand
+
+select:
+  - platform: template
+    name: "Response Speed"
+    id: response_speed
+    icon: mdi:speedometer
+    optimistic: true
+    restore_value: true
+    options:
+      - "Fast"
+      - "Normal"
+      - "Slow"
+    initial_option: "Normal"
+    entity_category: config

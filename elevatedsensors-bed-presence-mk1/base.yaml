@@ -1,0 +1,16 @@
+---
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+    sdkconfig_options:
+      CONFIG_BT_BLE_42_FEATURES_SUPPORTED: y
+      CONFIG_BT_BLE_50_FEATURES_SUPPORTED: n
+
+packages:
+  esphome-base: !include
+    file: ../esphome-common/base.yaml
+  wifi: !include
+    file: ../esphome-common/wifi.yaml
+  entities: !include
+    file: entities.yaml
