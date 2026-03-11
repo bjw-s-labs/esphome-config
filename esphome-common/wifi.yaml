@@ -4,8 +4,10 @@ substitutions:
   wifi_percent_id: wifi_signal_percent
 
 wifi:
+  id: wifi_id
   ap: {}
   domain: !secret domain_devices
+  fast_connect: true
   networks:
     - ssid: !secret wifi_ssid
       password: !secret wifi_pwd

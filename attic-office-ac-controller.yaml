@@ -10,4 +10,4 @@ packages:
   device_override: !include
     file: esphome-lg-controller/ha_temperature_override.yaml
     vars:
-      temperature_sensor_ha_entity_id: sensor.attic_office_multisensor_temperature
+      temperature_sensor_ha_entity_id: sensor.attic_office_ac_controller_adjusted_room_temperature

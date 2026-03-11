@@ -1,6 +1,6 @@
 ---
 substitutions:
-  auto_restart_schedule: "0 0 10 * * 1" # Sunday at 10:00:00
+  auto_restart_schedule: "0 30 3 * * 1" # Sunday at 3:30:00
 
 time:
   - platform: sntp

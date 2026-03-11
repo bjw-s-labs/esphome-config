@@ -2,10 +2,10 @@
 substitutions:
   system_name: attic-office-plug-desk
   friendly_name: Attic Office - Desk Plug
-  device_description: Athom ESP32-C3 EU Plug with BLE scanner
+  device_description: Athom PG01 ESP32-C3 EU Plug with BLE scanner
 
 packages:
   device: !include
-    file: athom-c3-eu/base.yaml
+    file: athom-pg01-c3-eu/base.yaml
   bluetooth-proxy: !include
     file: esphome-common/bluetooth-proxy.yaml

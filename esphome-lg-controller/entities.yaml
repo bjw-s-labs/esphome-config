@@ -14,7 +14,7 @@ external_components:
   - source:
       type: git
       url: https://github.com/JanM321/esphome-lg-controller
-      ref: 831414aeba892424ca822d2686a28d18c59b9902
+      ref: 19ef72a4189e8b4186490a17219b4e29e4403f69
     components:
       - lg_controller
 
@@ -37,19 +37,19 @@ climate:
     fahrenheit: false
     is_slave_controller: ${climate_is_slave_controller}
     vane1:
-      name: Airflow 1 Up/Down
+      name: Airflow 1 Up-Down
       id: vane_position_1
       icon: mdi:arrow-up-down
     vane2:
-      name: Airflow 2 Up/Down
+      name: Airflow 2 Up-Down
       id: vane_position_2
       icon: mdi:arrow-up-down
     vane3:
-      name: Airflow 3 Up/Down
+      name: Airflow 3 Up-Down
       id: vane_position_3
       icon: mdi:arrow-up-down
     vane4:
-      name: Airflow 4 Up/Down
+      name: Airflow 4 Up-Down
       id: vane_position_4
       icon: mdi:arrow-up-down
     overheating:

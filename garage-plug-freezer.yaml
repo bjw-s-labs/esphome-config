@@ -1,7 +1,7 @@
 ---
 substitutions:
-  system_name: attic-office-plug-homelab
-  friendly_name: Attic Office - Homelab Plug
+  system_name: garage-plug-freezer
+  friendly_name: Garage - Freezer Plug
   device_description: Athom PG01 ESP32-C3 EU Plug
 
 packages:

@@ -2,8 +2,8 @@
 substitutions:
   system_name: attic-office-plug-3dprinter
   friendly_name: Attic Office - 3DPrinter Plug
-  device_description: Athom ESP32-C3 EU Plug
+  device_description: Athom PG01 ESP32-C3 EU Plug
 
 packages:
   device: !include
-    file: athom-c3-eu/base.yaml
+    file: athom-pg01-c3-eu/base.yaml

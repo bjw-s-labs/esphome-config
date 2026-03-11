@@ -1,0 +1,13 @@
+---
+substitutions:
+  system_name: attic-thermostat
+  friendly_name: Attic - Thermostat
+  device_description: DIYLESS Thermostat 3
+
+packages:
+  device: !include
+    file: diyless-thermostat3/base.yaml
+  device_override: !include
+    file: diyless-thermostat3/ha_temperature_override.yaml
+    vars:
+      temperature_sensor_ha_entity_id: sensor.house_heating_current_temperature
