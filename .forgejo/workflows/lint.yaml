@@ -38,10 +38,11 @@ jobs:
             **/*.yaml
             **/*.yml
 
-      - name: Install Mise and required tools
-        uses: https://github.com/jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
-        with:
-          cache_key: "mise-v1-{{file_hash}}"
+      - name: Install yamllint
+        if: steps.changed-files.outputs.changed_files != '[]'
+        shell: bash
+        run: |
+          pipx install yamllint
 
       - name: Run yamllint
         if: steps.changed-files.outputs.changed_files != '[]'
