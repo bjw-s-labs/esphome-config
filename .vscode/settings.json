@@ -1,5 +1,8 @@
 {
   "files.associations": {
+    "**/.forgejo/**/*.yaml": "yaml",
+    ".yamllint.yaml": "yaml",
+    "secrets.yaml": "yaml",
     "*.yaml": "esphome"
   }
 }
