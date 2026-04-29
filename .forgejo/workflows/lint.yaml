@@ -39,7 +39,7 @@ jobs:
             **/*.yml
 
       - name: Install Mise and required tools
-        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
+        uses: https://github.com/jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
         with:
           cache_key: "mise-v1-{{file_hash}}"
 
