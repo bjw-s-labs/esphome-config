@@ -6,7 +6,8 @@ pipx.uvx = true
 python.uv_venv_auto = "create|source"
 
 [tools]
-"aqua:astral-sh/uv" = "latest"
+uv = "latest"
+yamllint = "latest"
 
 [hooks]
 postinstall = "uv sync"
