@@ -14,8 +14,7 @@ external_components:
   - source:
       type: git
       url: https://github.com/JanM321/esphome-lg-controller
-      # renovate: datasource=github-digest depName=JanM321/esphome-lg-controller
-      ref: 19ef72a4189e8b4186490a17219b4e29e4403f69
+      ref: b4c1bf530b56b72ea3dcd501573a77adf9fd5673
     components:
       - lg_controller
 
