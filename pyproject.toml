@@ -4,4 +4,4 @@ version = "0.1.0"
 description = "My esphome config"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = ["esphome==2026.6.3"]
+dependencies = ["esphome==2026.6.4"]
