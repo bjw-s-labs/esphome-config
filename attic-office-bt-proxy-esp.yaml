@@ -1,0 +1,11 @@
+---
+substitutions:
+  system_name: attic-office-bt-proxy-esp
+  friendly_name: Attic Office - Bluetooth Proxy ESP
+  device_description: M5Stack Atom Presence Detector
+
+packages:
+  device: !include
+    file: m5stack-atom/base.yaml
+  bluetooth-proxy: !include
+    file: esphome-common/bluetooth-proxy.yaml
