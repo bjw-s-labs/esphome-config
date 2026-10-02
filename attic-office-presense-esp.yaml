@@ -6,6 +6,6 @@ substitutions:
 
 packages:
   device: !include
-    file: m5stack-atom/base.yaml
+    file: apollo-msr2/base.yaml
   bluetooth-proxy: !include
     file: esphome-common/bluetooth-proxy.yaml
