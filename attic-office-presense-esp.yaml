@@ -2,7 +2,7 @@
 substitutions:
   system_name: attic-office-presence-esp
   friendly_name: Attic Office - Presence ESP
-  device_description: M5Stack Atom Presence Detector
+  device_description: Apollo MSR-2 mmwave multisensor
 
 packages:
   device: !include
