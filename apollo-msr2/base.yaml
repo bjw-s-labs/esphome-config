@@ -1,0 +1,29 @@
+---
+# Based on https://github.com/ApolloAutomation/MSR-2/blob/main/Integrations/ESPHome/MSR-2.yaml
+esp32:
+  variant: esp32c3
+  flash_size: 4MB
+  framework:
+    type: esp-idf
+
+packages:
+  esphome-base: !include
+    file: ../esphome-common/base.yaml
+  wifi: !include
+    file: ../esphome-common/wifi.yaml
+  entities: !include
+    file: entities.yaml
+
+esphome:
+  on_boot:
+    - priority: 900.0
+      then:
+        - lambda: |-
+            id(radar_bluetooth).turn_off();
+    - priority: -10
+      then:
+        - if:
+            condition:
+              - lambda: "return id(runTest);"
+            then:
+              - lambda: "id(testScript).execute();"
