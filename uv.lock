@@ -657,12 +657,12 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "esphome", specifier = "==2026.9.1" },
-    { name = "esphome-device-builder", specifier = "==1.23.1" },
+    { name = "esphome-device-builder", specifier = "==1.24.0" },
 ]
 
 [[package]]
 name = "esphome-device-builder"
-version = "1.23.1"
+version = "1.24.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "aiohttp" },
@@ -682,18 +682,18 @@ dependencies = [
     { name = "voluptuous" },
     { name = "zeroconf" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/df/23/e542d051cc0db76e7310c39ecb81093d12072ea3b4df34047f87ede31593/esphome_device_builder-1.23.1.tar.gz", hash = "sha256:4d2e6722ad0e835bea7eef764c2424c83f45cf26a3bbcb3f9ae9946999ccd4ef", size = 4360373, upload-time = "2026-10-10T21:58:58.908Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/c5/e3688349a4f65fb3c2a06eb57c4d8e3aca59e410938583706a95298d9ec2/esphome_device_builder-1.24.0.tar.gz", hash = "sha256:240178f45346ed3848e7e262cb2f7583ec24be8e17f474e3ce9e007a85361b65", size = 4377675, upload-time = "2026-10-16T00:29:50.886Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d2/54/a8c8cca707cdd19e15574b490bf59701da305bd2018ee03b3f015f64d523/esphome_device_builder-1.23.1-py3-none-any.whl", hash = "sha256:61cd0c6a6dfd700a7a64033fcbb9a49abea54a200de970d0b687e8763e83f9b8", size = 6988373, upload-time = "2026-10-10T21:58:56.472Z" },
+    { url = "https://files.pythonhosted.org/packages/75/b0/3619e105026cf2ec6183541b005284a7d0c1d34c03db404e56f748311802/esphome_device_builder-1.24.0-py3-none-any.whl", hash = "sha256:dc75f03a32fd16e2c38455a667564feb82923230066d22ea2c9b81285ffd4467", size = 7001376, upload-time = "2026-10-16T00:29:48.349Z" },
 ]
 
 [[package]]
 name = "esphome-device-builder-frontend"
-version = "0.1.369"
+version = "0.1.371"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/1c/35/290a5e9ef28391012dd0c1c3969375a7d83e3a2192125551a83e89c38fc8/esphome_device_builder_frontend-0.1.369.tar.gz", hash = "sha256:27b6646fac4e685e13e9c3e198a9b017665ab1bee276c91eb35ca212096334fd", size = 2371800, upload-time = "2026-10-10T01:10:00.343Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e2/91/4c905445a122c93cb0f5c595b53d937dc9f6ec20fcf919f9646e1a6d18a8/esphome_device_builder_frontend-0.1.371.tar.gz", hash = "sha256:8200e79f8f411e9504cf920868ba0af30bbae2f77de10f0cf696ed4e746a3b81", size = 2387637, upload-time = "2026-10-15T23:22:55.886Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/72/0a/f9b1a5ac63870a399653deabfc5e3b2eae5200be21c95188f9449a3d063a/esphome_device_builder_frontend-0.1.369-py3-none-any.whl", hash = "sha256:2193dc102299fc5477e47879207e232f95e9cc28a3d37f3112027e05da95ae76", size = 2384582, upload-time = "2026-10-10T01:09:58.082Z" },
+    { url = "https://files.pythonhosted.org/packages/51/90/d7ee36d519fa7e41f7f62ef1b85b1db704fbdd586d7d95ac01ad36b8629c/esphome_device_builder_frontend-0.1.371-py3-none-any.whl", hash = "sha256:0305bfbb48711d87579e6bfb091793fa51332e663ce22e489e5c95b4c4b4a47c", size = 2399209, upload-time = "2026-10-15T23:22:53.74Z" },
 ]
 
 [[package]]
