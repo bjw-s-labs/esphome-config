@@ -6,5 +6,5 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
   "esphome==2026.10.2",
-  "esphome-device-builder==1.27.0"
+  "esphome-device-builder==1.28.0"
 ]
